@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Stefan Papp',
+  url: 'https://stefanpapp.vercel.app/about-stefan',
+  jobTitle: 'Investor & Engineering Leader',
+  description: 'Engineering leader turned angel investor, backing technical founders building developer tools and infrastructure.',
+  sameAs: [
+    'https://www.linkedin.com/in/stefanpapp',
+    'https://github.com/stefanpapp',
+  ],
+};
+---
+
+<BaseLayout
+  title="About Stefan — Analytical Investor"
+  description="Engineering leader turned angel investor. 15+ years building and leading high-performance teams, now backing the next generation of technical founders."
+  url="/about-stefan"
+  jsonLd={jsonLd}
+>
+  <!-- Hero Banner -->
+  <section class="bg-cream pt-24 pb-16 px-4 md:px-8">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="font-serif text-4xl md:text-6xl font-bold text-navy mb-6 leading-tight">
+        About Stefan
+      </h1>
+      <p class="font-serif text-lg md:text-xl text-slate leading-relaxed max-w-2xl">
+        Engineering leader turned investor. I spent 15+ years building and leading high-performance engineering teams — now I back the founders building the next generation of developer tools and infrastructure.
+      </p>
+    </div>
+  </section>
+
+  <!-- Background -->
+  <section class="py-16 md:py-24 px-4 md:px-8 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-navy font-sans mb-8">Background</h2>
+      <div class="space-y-6 text-slate leading-relaxed text-lg">
+        <p>
+          I have spent the better part of two decades in engineering — building systems, leading teams, and learning the hard way what works and what does not at scale. I have led organizations of 50+ engineers, advised more than 10 companies on their technical strategy, and built data infrastructure and AI-augmented tooling that shipped to production under real constraints.
+        </p>
+        <p>
+          That experience is what I bring to investing. I am not a financial professional — I am a practitioner who writes small checks into the kinds of companies I have spent my career either building or wishing existed. Developer tools, infrastructure, observability, security tooling — the picks and shovels of software engineering.
+        </p>
+        <p>
+          I look for founders who have lived the problem they are solving. The best companies in this space are built by engineers who rebuilt the same internal tool at three consecutive companies and finally decided to do it once properly. That kind of direct problem experience cannot be substituted by customer research or market sizing reports.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-16 md:py-24 px-4 md:px-8 bg-cream">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-navy font-serif mb-8">What I value</h2>
+      <div class="space-y-6 text-slate leading-relaxed text-lg font-serif">
+        <p>
+          <strong class="text-navy">Independent thinking.</strong> I came to my worldview through engineering, not ideology. When you spend enough time designing systems, you develop a deep appreciation for distributed decision-making, local knowledge, and the cost of centralized control. I apply the same lens to investing, politics, and life.
+        </p>
+        <p>
+          <strong class="text-navy">Growth culture.</strong> The people I most want to work with treat being wrong as interesting rather than threatening. They hold their convictions loosely — as current best approximations rather than fixed identities. That makes them better at updating, better at listening, and more genuinely interesting to collaborate with.
+        </p>
+        <p>
+          <strong class="text-navy">Honesty over diplomacy.</strong> I would rather give a founder a clear "no" with a real reason than a vague "let's keep in touch" that wastes everyone's time. If I am on your cap table, I will tell you what I actually think — including when I think you are making a mistake.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How I help -->
+  <section class="py-16 md:py-24 px-4 md:px-8 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-navy font-sans mb-8">Beyond capital</h2>
+      <div class="space-y-6 text-slate leading-relaxed text-lg">
+        <p>
+          I write pre-seed and seed checks between $25K and $100K. But the money is the least interesting part. Where I try to be genuinely useful:
+        </p>
+        <ul class="space-y-4 pl-6">
+          <li class="relative before:content-[''] before:absolute before:left-[-1.25rem] before:top-[0.6rem] before:w-2 before:h-2 before:bg-amber before:rounded-full">
+            <strong class="text-navy">Customer introductions</strong> — I know engineering leaders who are realistic potential customers for developer tools. Warm introductions to people who will actually evaluate your product.
+          </li>
+          <li class="relative before:content-[''] before:absolute before:left-[-1.25rem] before:top-[0.6rem] before:w-2 before:h-2 before:bg-amber before:rounded-full">
+            <strong class="text-navy">Architecture review</strong> — Technical review of early-stage architecture decisions, when the cost of getting it wrong is highest and the team is smallest.
+          </li>
+          <li class="relative before:content-[''] before:absolute before:left-[-1.25rem] before:top-[0.6rem] before:w-2 before:h-2 before:bg-amber before:rounded-full">
+            <strong class="text-navy">Honest product feedback</strong> — What your product actually does versus what your pitch deck says it does. The gap between these two things is where startups get stuck.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-navy py-20 px-8 text-center">
+    <h2 class="text-4xl lg:text-5xl font-bold text-white font-sans mb-4">Interested in working together?</h2>
+    <p class="text-white/75 text-lg mb-8 max-w-xl mx-auto">
+      Whether you are building a company or just want to exchange ideas, I am always happy to connect.
+    </p>
+    <a
+      href="/contact"
+      class="inline-block bg-amber text-white font-semibold px-10 py-4 rounded hover:bg-amber-light transition-colors duration-200"
+    >
+      Get in touch
+    </a>
+  </section>
+</BaseLayout>

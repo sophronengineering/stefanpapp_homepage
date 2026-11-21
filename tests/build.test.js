@@ -42,8 +42,9 @@ describe('Build output', () => {
 
   it('index.html contains all nav links', () => {
     const html = readFileSync('dist/index.html', 'utf-8');
-    assert.ok(html.includes('/ai-engineering'));
     assert.ok(html.includes('/worldview'));
+    assert.ok(html.includes('/investments'));
+    assert.ok(html.includes('/about-stefan'));
     assert.ok(html.includes('/contact'));
   });
 
@@ -66,7 +67,7 @@ describe('Build output', () => {
   it('index.html contains both CTAs', () => {
     const html = readFileSync('dist/index.html', 'utf-8');
     assert.ok(html.includes('Read my thinking'));
-    assert.ok(html.includes('Work with me'));
+    assert.ok(html.includes('See my investments'));
   });
 
   it('index.html contains social proof section', () => {
@@ -74,19 +75,16 @@ describe('Build output', () => {
     assert.ok(html.includes('social-proof'));
   });
 
-  it('generates ai-engineering page', () => {
-    assert.ok(existsSync('dist/ai-engineering/index.html'));
+  it('generates about-stefan page', () => {
+    assert.ok(existsSync('dist/about-stefan/index.html'));
   });
 
-  it('ai-engineering contains service blocks', () => {
-    const html = readFileSync('dist/ai-engineering/index.html', 'utf-8');
-    assert.ok(html.includes('Consulting'));
-    assert.ok(html.includes('Integration'));
-    assert.ok(html.includes('Training'));
-  });
-
-  it('generates data-transformations page', () => {
-    assert.ok(existsSync('dist/data-transformations/index.html'));
+  it('does not generate or link the retired pages', () => {
+    const html = readFileSync('dist/index.html', 'utf-8');
+    for (const slug of ['ai-engineering', 'data-transformations', 'leadership']) {
+      assert.ok(!existsSync(`dist/${slug}/index.html`), `${slug} page should be gone`);
+      assert.ok(!html.includes(`href="/${slug}"`), `home still links to /${slug}`);
+    }
   });
 
   it('generates worldview page', () => {
@@ -99,10 +97,6 @@ describe('Build output', () => {
     assert.ok(html.includes('growth-culture'));
     assert.ok(html.includes('cats'));
     assert.ok(html.includes('aria-expanded'));
-  });
-
-  it('generates leadership page', () => {
-    assert.ok(existsSync('dist/leadership/index.html'));
   });
 
   it('generates investments page', () => {
@@ -127,7 +121,7 @@ describe('Build output', () => {
   });
 
   it('uses the live domain for canonical, JSON-LD, sitemap and robots URLs', () => {
-    const files = ['dist/index.html', 'dist/sitemap-index.xml', 'dist/sitemap-0.xml', 'dist/robots.txt'];
+    const files = ['dist/index.html', 'dist/about-stefan/index.html', 'dist/sitemap-index.xml', 'dist/sitemap-0.xml', 'dist/robots.txt'];
     for (const file of files) {
       const content = readFileSync(file, 'utf-8');
       assert.ok(!content.includes('stefanpapp.com'), `${file} references the unregistered stefanpapp.com`);
