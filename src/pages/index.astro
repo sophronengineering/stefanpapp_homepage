@@ -9,8 +9,8 @@ const jsonLd = {
   '@type': 'Person',
   name: 'Stefan Papp',
   url: 'https://stefanpapp.vercel.app',
-  jobTitle: 'AI-Augmented Engineering Leader',
-  description: 'Engineering leader, investor, and independent thinker bridging idealism and pragmatism.',
+  jobTitle: 'Investor & Independent Thinker',
+  description: 'Investor and independent thinker bridging idealism and pragmatism.',
   sameAs: [
     'https://www.linkedin.com/in/stefanpapp',
     'https://github.com/stefanpapp',
@@ -26,35 +26,29 @@ const socialProofItems = [
 
 const featuredCards = [
   {
-    title: 'AI-Augmented Engineering',
-    description: 'How I use AI tools to make engineering teams dramatically more productive — and what that means for how we hire, build, and lead.',
-    href: '/ai-engineering',
-    variant: 'professional' as const,
-  },
-  {
     title: 'What I Believe',
     description: 'On liberty, the compounding power of ideas, and why independent thinking is the highest-leverage skill in an age of noise.',
     href: '/worldview',
     variant: 'idealistic' as const,
   },
   {
-    title: 'Data Transformations',
-    description: 'Real-world patterns for turning messy data into reliable pipelines. Hard-won lessons from building data infrastructure at scale.',
-    href: '/data-transformations',
-    variant: 'professional' as const,
-  },
-  {
     title: 'Investment Philosophy',
     description: 'Why I back founders who think differently — and the mental models I use to evaluate ideas at the earliest stages.',
     href: '/investments',
+    variant: 'professional' as const,
+  },
+  {
+    title: 'About Stefan',
+    description: 'Engineering leader turned investor. 15+ years building and leading high-performance teams, now backing the next generation of technical founders.',
+    href: '/about-stefan',
     variant: 'idealistic' as const,
   },
 ];
 ---
 
 <BaseLayout
-  title="Stefan Papp — AI-Augmented Engineering & Thought Leadership"
-  description="Engineering leader, investor, and independent thinker. AI-augmented engineering, data transformations, and a worldview that bridges idealism and pragmatism."
+  title="Analytical Investor — Worldview, Investments & Independent Thinking"
+  description="Investor and independent thinker. A worldview grounded in reason, an investment philosophy built on first-hand engineering experience."
   url="/"
   jsonLd={jsonLd}
 >
@@ -62,9 +56,9 @@ const featuredCards = [
     leftHeadline="Ideas shape the world."
     leftSubtext="On liberty, growth, and why independent thinking matters more than ever. A worldview grounded in reason, not convention."
     leftCta={{ label: 'Read my thinking', href: '/worldview' }}
-    rightHeadline="I build what's next."
-    rightSubtext="AI-augmented engineering leader helping companies ship faster with smarter tools. 15+ years building and leading high-performance engineering teams."
-    rightCta={{ label: 'Work with me', href: '/contact' }}
+    rightHeadline="I invest in what's next."
+    rightSubtext="Backing technical founders building developer tools and infrastructure. Small checks, real help, pattern recognition from 15+ years in the trenches."
+    rightCta={{ label: 'See my investments', href: '/investments' }}
   />
 
   <SocialProof items={socialProofItems} />

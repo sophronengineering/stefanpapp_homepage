@@ -9,11 +9,9 @@ test.describe('Navigation', () => {
     await expect(nav).toBeVisible();
 
     const expectedLinks = [
-      { label: 'AI Engineering', href: '/ai-engineering' },
-      { label: 'Data Transformations', href: '/data-transformations' },
       { label: 'Worldview', href: '/worldview' },
-      { label: 'Leadership', href: '/leadership' },
       { label: 'Investments', href: '/investments' },
+      { label: 'About Stefan', href: '/about-stefan' },
       { label: 'Contact', href: '/contact' },
     ];
 
@@ -38,7 +36,7 @@ test.describe('Navigation', () => {
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.goto('/contact/');
 
-    const logo = page.locator('a').filter({ hasText: 'Stefan Papp' }).first();
+    const logo = page.locator('a').filter({ hasText: 'Analytical Investor' }).first();
     await logo.click();
 
     await expect(page).toHaveURL(/^http:\/\/localhost:4321\/?$/);
