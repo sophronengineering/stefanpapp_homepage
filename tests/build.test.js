@@ -95,6 +95,14 @@ describe('Build output', () => {
     assert.ok(!html.includes('Successful Exits'));
   });
 
+  it('links to a single LinkedIn profile URL on every page', () => {
+    for (const page of ['index.html', 'about-stefan/index.html', 'contact/index.html', 'investments/index.html', 'worldview/index.html']) {
+      const html = readFileSync(`dist/${page}`, 'utf-8');
+      const urls = new Set(html.match(/https:\/\/www\.linkedin\.com\/in\/[\w-]+/g) ?? []);
+      assert.deepStrictEqual([...urls], ['https://www.linkedin.com/in/stefanpapp'], page);
+    }
+  });
+
   it('does not generate or link the retired pages', () => {
     const html = readFileSync('dist/index.html', 'utf-8');
     for (const slug of ['ai-engineering', 'data-transformations', 'leadership']) {
