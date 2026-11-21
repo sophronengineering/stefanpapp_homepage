@@ -79,6 +79,22 @@ describe('Build output', () => {
     assert.ok(existsSync('dist/about-stefan/index.html'));
   });
 
+  it('about-stefan carries the real track record and recommendations', () => {
+    const html = readFileSync('dist/about-stefan/index.html', 'utf-8');
+    for (const text of ['Track record', 'Sophron Engineering', 'Hagenberg Software GmbH', 'Michael Wolfrath', 'Matthias Bidlingmeyer']) {
+      assert.ok(html.includes(text), `about-stefan is missing "${text}"`);
+    }
+  });
+
+  it('home page shows the live social proof stats', () => {
+    const html = readFileSync('dist/index.html', 'utf-8');
+    for (const text of ['Years in Engineering Leadership', 'Engineers Led', 'Companies Advised', 'Angel Investments']) {
+      assert.ok(html.includes(text), `home is missing "${text}"`);
+    }
+    assert.ok(!html.includes('Avg Realized Return'));
+    assert.ok(!html.includes('Successful Exits'));
+  });
+
   it('does not generate or link the retired pages', () => {
     const html = readFileSync('dist/index.html', 'utf-8');
     for (const slug of ['ai-engineering', 'data-transformations', 'leadership']) {
