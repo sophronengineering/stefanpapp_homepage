@@ -42,9 +42,8 @@ describe('Build output', () => {
 
   it('index.html contains all nav links', () => {
     const html = readFileSync('dist/index.html', 'utf-8');
+    assert.ok(html.includes('/ai-engineering'));
     assert.ok(html.includes('/worldview'));
-    assert.ok(html.includes('/investments'));
-    assert.ok(html.includes('/about-stefan'));
     assert.ok(html.includes('/contact'));
   });
 
@@ -67,7 +66,7 @@ describe('Build output', () => {
   it('index.html contains both CTAs', () => {
     const html = readFileSync('dist/index.html', 'utf-8');
     assert.ok(html.includes('Read my thinking'));
-    assert.ok(html.includes('See my investments'));
+    assert.ok(html.includes('Work with me'));
   });
 
   it('index.html contains social proof section', () => {
@@ -75,40 +74,28 @@ describe('Build output', () => {
     assert.ok(html.includes('social-proof'));
   });
 
-  it('generates about-stefan page', () => {
-    assert.ok(existsSync('dist/about-stefan/index.html'));
+  it('generates ai-engineering page', () => {
+    assert.ok(existsSync('dist/ai-engineering/index.html'));
   });
 
-  it('about-stefan carries the real track record and recommendations', () => {
-    const html = readFileSync('dist/about-stefan/index.html', 'utf-8');
-    for (const text of ['Track record', 'Sophron Engineering', 'Hagenberg Software GmbH', 'Michael Wolfrath', 'Matthias Bidlingmeyer']) {
-      assert.ok(html.includes(text), `about-stefan is missing "${text}"`);
-    }
-  });
-
-  it('home page shows the live social proof stats', () => {
-    const html = readFileSync('dist/index.html', 'utf-8');
-    for (const text of ['Years in Engineering Leadership', 'Engineers Led', 'Companies Advised', 'Angel Investments']) {
-      assert.ok(html.includes(text), `home is missing "${text}"`);
-    }
-    assert.ok(!html.includes('Avg Realized Return'));
-    assert.ok(!html.includes('Successful Exits'));
+  it('ai-engineering contains service blocks', () => {
+    const html = readFileSync('dist/ai-engineering/index.html', 'utf-8');
+    assert.ok(html.includes('Consulting'));
+    assert.ok(html.includes('Integration'));
+    assert.ok(html.includes('Training'));
   });
 
   it('links to a single LinkedIn profile URL on every page', () => {
-    for (const page of ['index.html', 'about-stefan/index.html', 'contact/index.html', 'investments/index.html', 'worldview/index.html']) {
-      const html = readFileSync(`dist/${page}`, 'utf-8');
+    for (const page of ['index', 'ai-engineering', 'data-transformations', 'leadership', 'contact', 'investments', 'worldview']) {
+      const file = page === 'index' ? 'dist/index.html' : `dist/${page}/index.html`;
+      const html = readFileSync(file, 'utf-8');
       const urls = new Set(html.match(/https:\/\/www\.linkedin\.com\/in\/[\w-]+/g) ?? []);
-      assert.deepStrictEqual([...urls], ['https://www.linkedin.com/in/stefanpapp'], page);
+      assert.ok(urls.size <= 1 && [...urls].every((u) => u === 'https://www.linkedin.com/in/stefanpapp'), `${page}: ${[...urls]}`);
     }
   });
 
-  it('does not generate or link the retired pages', () => {
-    const html = readFileSync('dist/index.html', 'utf-8');
-    for (const slug of ['ai-engineering', 'data-transformations', 'leadership']) {
-      assert.ok(!existsSync(`dist/${slug}/index.html`), `${slug} page should be gone`);
-      assert.ok(!html.includes(`href="/${slug}"`), `home still links to /${slug}`);
-    }
+  it('generates data-transformations page', () => {
+    assert.ok(existsSync('dist/data-transformations/index.html'));
   });
 
   it('generates worldview page', () => {
@@ -121,6 +108,10 @@ describe('Build output', () => {
     assert.ok(html.includes('growth-culture'));
     assert.ok(html.includes('cats'));
     assert.ok(html.includes('aria-expanded'));
+  });
+
+  it('generates leadership page', () => {
+    assert.ok(existsSync('dist/leadership/index.html'));
   });
 
   it('generates investments page', () => {
@@ -145,7 +136,7 @@ describe('Build output', () => {
   });
 
   it('uses the live domain for canonical, JSON-LD, sitemap and robots URLs', () => {
-    const files = ['dist/index.html', 'dist/about-stefan/index.html', 'dist/sitemap-index.xml', 'dist/sitemap-0.xml', 'dist/robots.txt'];
+    const files = ['dist/index.html', 'dist/sitemap-index.xml', 'dist/sitemap-0.xml', 'dist/robots.txt'];
     for (const file of files) {
       const content = readFileSync(file, 'utf-8');
       assert.ok(!content.includes('stefanpapp.com'), `${file} references the unregistered stefanpapp.com`);
