@@ -128,6 +128,15 @@ describe('Build output', () => {
     }
   });
 
+  it('makes no angel-investing claims', () => {
+    for (const file of ['dist/index.html', 'dist/contact/index.html', 'dist/investments/index.html']) {
+      const html = readFileSync(file, 'utf-8');
+      for (const claim of ['Angel Investments', 'pre-seed', 'seed checks', 'back founders', 'earliest stages']) {
+        assert.ok(!html.includes(claim), `${file} still contains "${claim}"`);
+      }
+    }
+  });
+
   it('generates contact page', () => {
     assert.ok(existsSync('dist/contact/index.html'));
   });
