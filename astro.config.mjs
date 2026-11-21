@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://stefanpapp.com',
+  site: 'https://stefanpapp.vercel.app',
   output: 'static',
   integrations: [sitemap()],
   vite: {

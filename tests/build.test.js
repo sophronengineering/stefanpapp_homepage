@@ -126,6 +126,17 @@ describe('Build output', () => {
     assert.ok(html.includes('name="email"'));
   });
 
+  it('uses the live domain for canonical, JSON-LD, sitemap and robots URLs', () => {
+    const files = ['dist/index.html', 'dist/sitemap-index.xml', 'dist/sitemap-0.xml', 'dist/robots.txt'];
+    for (const file of files) {
+      const content = readFileSync(file, 'utf-8');
+      assert.ok(!content.includes('stefanpapp.com'), `${file} references the unregistered stefanpapp.com`);
+    }
+    const html = readFileSync('dist/index.html', 'utf-8');
+    assert.ok(html.includes('<link rel="canonical" href="https://stefanpapp.vercel.app/"'));
+    assert.ok(readFileSync('dist/robots.txt', 'utf-8').includes('Sitemap: https://stefanpapp.vercel.app/sitemap-index.xml'));
+  });
+
   it('generates 404 page', () => {
     assert.ok(existsSync('dist/404.html'));
   });
