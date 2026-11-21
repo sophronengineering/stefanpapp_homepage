@@ -86,7 +86,7 @@ describe('Build output', () => {
   });
 
   it('links to a single LinkedIn profile URL on every page', () => {
-    for (const page of ['index', 'ai-engineering', 'data-transformations', 'leadership', 'contact', 'investments', 'worldview']) {
+    for (const page of ['index', 'ai-engineering', 'data-transformations', 'leadership', 'contact', 'investments', 'worldview', 'writing']) {
       const file = page === 'index' ? 'dist/index.html' : `dist/${page}/index.html`;
       const html = readFileSync(file, 'utf-8');
       const urls = new Set(html.match(/https:\/\/www\.linkedin\.com\/in\/[\w-]+/g) ?? []);
@@ -135,6 +135,20 @@ describe('Build output', () => {
         assert.ok(!html.includes(claim), `${file} still contains "${claim}"`);
       }
     }
+  });
+
+  it('generates writing page with the book links', () => {
+    const html = readFileSync('dist/writing/index.html', 'utf-8');
+    assert.ok(html.includes('I write non-fiction technical books and fiction books.'));
+    assert.ok(html.includes('href="https://www.manning.com/books/investing-for-programmers"'));
+    assert.ok(html.includes('href="https://www.hanser-elibrary.com/doi/book/10.3139/9781569908877"'));
+    assert.ok(html.includes('The Beautiful Ones'));
+    assert.ok(html.includes('will be published in 2027'));
+  });
+
+  it('links to the writing page from header and footer', () => {
+    const html = readFileSync('dist/index.html', 'utf-8');
+    assert.ok((html.match(/href="\/writing"/g) ?? []).length >= 3);
   });
 
   it('generates contact page', () => {

@@ -14,6 +14,7 @@ test.describe('Navigation', () => {
       { label: 'Worldview', href: '/worldview' },
       { label: 'Leadership', href: '/leadership' },
       { label: 'Investments', href: '/investments' },
+      { label: 'Writing', href: '/writing' },
       { label: 'Contact', href: '/contact' },
     ];
 
