@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Writing — Stefan Papp"
+  description="Non-fiction technical books and fiction by Stefan Papp, including Investing for Programmers and the upcoming novel The Beautiful Ones."
+  url="/writing"
+>
+  <!-- Hero Banner -->
+  <section class="bg-navy pt-24 pb-20 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-4xl md:text-6xl font-bold text-white font-sans leading-tight">
+        Writing
+      </h1>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 px-4 md:px-8 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <div class="space-y-6 text-slate leading-relaxed text-lg">
+        <p>
+          I write non-fiction technical books and fiction books.
+        </p>
+        <p>
+          See my latest tech books:
+          <a href="https://www.manning.com/books/investing-for-programmers" class="text-amber hover:underline" rel="noopener">Investing for Programmers</a>
+          and
+          <a href="https://www.hanser-elibrary.com/doi/book/10.3139/9781569908877" class="text-amber hover:underline" rel="noopener">The Handbook of Data Science and AI</a>.
+        </p>
+        <p>
+          My upcoming fictional book, The Beautiful Ones, will be published in 2027.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
