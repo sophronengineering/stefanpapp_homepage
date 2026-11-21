@@ -118,9 +118,14 @@ describe('Build output', () => {
     assert.ok(existsSync('dist/investments/index.html'));
   });
 
-  it('investments page contains disclaimer', () => {
+  it('investments page contains only the investing-for-programmers text', () => {
     const html = readFileSync('dist/investments/index.html', 'utf-8');
-    assert.ok(html.includes('Past performance'));
+    const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
+    assert.ok(main.includes('I wrote investing for programmers'));
+    assert.ok(main.includes('once the data confirms in numbers what I see as a qualitative advantage, I invest.'));
+    for (const gone of ['Portfolio', 'Stackform', 'Avg Realized Return', 'Past performance', 'small checks']) {
+      assert.ok(!main.includes(gone), `investments still contains "${gone}"`);
+    }
   });
 
   it('generates contact page', () => {
